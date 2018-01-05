@@ -22,15 +22,15 @@ var fetch = () => {
 };
 
 var handleFetch = (unk, trades) => {
-  if (trades.length > 0) {
-    var last = moment.unix(_.last(trades).date).utc();
-    var next = last.clone();
+  if (trades.length > 0 && lastTid < _.first(trades).tid) {
+    var lastTid = _.last(trades).tid;
+    var next = moment.unix(_.last(trades).date).utc();
   } else {
-    var next = from.clone().add(1, 'd');
-    log.debug('Import step returned no results, moving to the next 24h period');
+    var next = from.clone().add(3600000, 'ms');
+    log.debug('Import step returned no results, moving to the next hour');
   }
 
-  if (from.add(1, 'd') >= end) {
+  if (from.add(3600000, 'ms') >= end) {
     fetcher.emit('done');
 
     var endUnix = end.unix();
