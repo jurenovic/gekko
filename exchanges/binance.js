@@ -134,14 +134,14 @@ Trader.prototype.getPortfolio = function(callback) {
 
     if (!_.isNumber(assetAmount) || _.isNaN(assetAmount)) {
       log.error(
-        'Binance did not return portfolio for ${this.asset}, assuming 0.'
+        `Binance did not return portfolio for ${this.asset}, assuming 0.`
       );
       assetAmount = 0;
     }
 
     if (!_.isNumber(currencyAmount) || _.isNaN(currencyAmount)) {
       log.error(
-        'Binance did not return portfolio for ${this.currency}, assuming 0.'
+        `Binance did not return portfolio for ${this.currency}, assuming 0.`
       );
       currencyAmount = 0;
     }
